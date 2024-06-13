@@ -1,4 +1,4 @@
-import 'package:bookly_application/featuers/home/presentation/widgets/book_listview_item.dart';
+import 'package:bookly_application/featuers/home/presentation/widgets/books/book_listview_item.dart';
 import 'package:flutter/material.dart';
 
 class BooksListView extends StatelessWidget {
