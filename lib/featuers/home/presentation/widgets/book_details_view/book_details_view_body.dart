@@ -10,24 +10,26 @@ class BookDetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0).copyWith(top: 20),
-      child: SizedBox(
-        width: MediaQuery.sizeOf(context).width,
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            BookDetailSection(),
-            SizedBox(
-              height: 50,
+      child: const CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                BookDetailSection(),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 30,
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 30),
+                child: SimilarBooksSection(),
               ),
-              child: SimilarBooksSection(),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
