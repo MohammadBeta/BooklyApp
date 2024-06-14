@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../core/utilis/constants/app_routes.dart';
+import '../../../home/presentation/widgets/home_view/best_seller/best_seller_list_view_item.dart';
+
+class SearchResultListView extends StatelessWidget {
+  const SearchResultListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 5,
+      padding: EdgeInsets.zero,
+      itemBuilder: (context, index) {
+        return Container(
+          margin: const EdgeInsets.only(bottom: 16),
+          child: InkWell(
+              onTap: () {
+                GoRouter.of(context).push(AppRoutes.bookDetailsView);
+              },
+              child: const BestSellerListViewItem()),
+        );
+      },
+    );
+  }
+}

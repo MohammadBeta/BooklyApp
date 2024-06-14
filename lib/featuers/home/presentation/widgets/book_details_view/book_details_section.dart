@@ -11,8 +11,9 @@ class BookDetailSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-            width: MediaQuery.sizeOf(context).width * .4,
+        Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.sizeOf(context).width * .30),
             child: const CustomBookItem()),
         const SizedBox(
           height: 25,
