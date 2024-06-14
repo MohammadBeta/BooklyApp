@@ -52,7 +52,10 @@ class BestSellerListViewItem extends StatelessWidget {
                     "19.99 €",
                     style: AppStyles.styleBold15,
                   ),
-                  BookRating()
+                  Padding(
+                    padding: EdgeInsets.only(right: 30),
+                    child: BookRating(),
+                  )
                 ],
               )
             ],
