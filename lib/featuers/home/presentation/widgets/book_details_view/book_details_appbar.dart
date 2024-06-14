@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../../core/utilis/constants/app_colors.dart';
-import '../../../../../core/utilis/constants/app_images.dart';
-
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({
+class BookDetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const BookDetailsAppBar({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SvgPicture.asset(AppImages.logo),
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search,
-                size: 30,
-              ))
-        ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+                onPressed: () {
+                  GoRouter.of(context).pop();
+                },
+                icon: const Icon(FontAwesomeIcons.xmark)),
+            const Icon(
+              FontAwesomeIcons.cartShopping,
+              size: 30,
+            )
+          ],
+        ),
       ),
-      backgroundColor: AppColors.scaffoldBackGround,
     );
   }
 
