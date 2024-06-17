@@ -11,7 +11,7 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
   void getFeaturedBooks() async {
     emit(FeaturedBooksLoading());
 
-    final result = await _homeRepoImpl.fetchBestSellerBooks();
+    final result = await _homeRepoImpl.fetchFeaturedBooks();
 
     result.fold(
         (failure) => emit(FeaturedBooksFailure(errorMessage: failure.message)),

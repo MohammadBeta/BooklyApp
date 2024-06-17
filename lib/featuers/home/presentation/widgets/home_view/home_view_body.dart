@@ -1,7 +1,7 @@
 import 'package:bookly_application/core/utilis/constants/styles.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bookly_application/featuers/home/presentation/manage/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'best_seller/best_seller_list_view.dart';
 import 'books/books_listview.dart';
@@ -16,8 +16,28 @@ class HomeViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BooksListView(
-              booksList: const [],
+            BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
+              listener: (context, state) {
+                if (state is FeaturedBooksFailure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.errorMessage)));
+                }
+              },
+              builder: (context, state) {
+                if (state is FeaturedBooksSuccess) {
+                  return BooksListView(
+                    booksList: state.booksList,
+                  );
+                } else if (state is FeaturedBooksLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return const Center(
+                    child: Text("Discover Programming Books"),
+                  );
+                }
+              },
             ),
             const SizedBox(
               height: 40,

@@ -15,10 +15,10 @@ class HomeRepoImpl implements HomeRepo {
       Map<String, dynamic> data =
           await apiService.getData(AppApiUrl.fetchNewestBooks);
       List<BookModel> booksList = [];
+      for (int i = 0; i < data['items'].length; i++) {
+        booksList.add(BookModel.fromJson(data['items'][i]));
+      }
 
-      data['items'].forEach((key, value) {
-        booksList.add(BookModel.fromJson(value));
-      });
       return right(booksList);
     } catch (ex) {
       if (ex is DioException) {
@@ -29,15 +29,15 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async{
+  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
     try {
       Map<String, dynamic> data =
           await apiService.getData(AppApiUrl.fetchFeaturedBooks);
       List<BookModel> booksList = [];
 
-      data['items'].forEach((key, value) {
-        booksList.add(BookModel.fromJson(value));
-      });
+      for (int i = 0; i < data['items'].length; i++) {
+        booksList.add(BookModel.fromJson(data['items'][i]));
+      }
       return right(booksList);
     } catch (ex) {
       if (ex is DioException) {
