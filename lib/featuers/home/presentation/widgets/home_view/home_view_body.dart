@@ -1,4 +1,5 @@
 import 'package:bookly_application/core/utilis/constants/styles.dart';
+import 'package:bookly_application/featuers/home/presentation/manage/best_seller_books_cubit/best_seller_books_cubit.dart';
 import 'package:bookly_application/featuers/home/presentation/manage/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,10 +56,30 @@ class HomeViewBody extends StatelessWidget {
           ],
         ),
       ),
-      const SliverFillRemaining(
+      SliverFillRemaining(
         child: Padding(
-          padding: EdgeInsets.only(left: 30),
-          child: BestSellerListView(),
+          padding: const EdgeInsets.only(left: 30),
+          child: BlocConsumer<BestSellerCubit, BestSellerState>(
+            listener: (context, state) {
+              if (state is BestSellerFailure) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(state.errorMessage)));
+              }
+            },
+            builder: (context, state) {
+              if (state is BestSellerSuccess) {
+                return const BestSellerListView();
+              } else if (state is BestSellerLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return const Center(
+                  child: Text("Best Seller Programming Books"),
+                );
+              }
+            },
+          ),
         ),
       )
     ]);
