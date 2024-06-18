@@ -1,25 +1,45 @@
+import 'package:bookly_application/core/widgets/custom_error.dart';
+import 'package:bookly_application/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly_application/featuers/home/presentation/widgets/custom_book_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../data/models/book_model/book_model.dart';
+import '../../../manage/featured_books_cubit/featured_books_cubit.dart';
 
 class BooksListView extends StatelessWidget {
-  BooksListView({super.key, this.booksList});
-  List<BookModel>? booksList;
+  const BooksListView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * .27,
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        itemCount: booksList!.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: CustomBookItem(
-                imageUrl: booksList![index].volumeInfo.imageLinks.thumbnail),
-          );
+      child: BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
+        listener: (context, state) {
+          if (state is FeaturedBooksFailure) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.errorMessage)));
+          }
+        },
+        builder: (context, state) {
+          if (state is FeaturedBooksSuccess) {
+            return ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: state.booksList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: CustomBookItem(
+                      imageUrl: state
+                          .booksList[index].volumeInfo.imageLinks.thumbnail),
+                );
+              },
+            );
+          } else if (state is FeaturedBooksFailure) {
+            return const CustomErrorWidget();
+          } else {
+            return const CustomLoadingIndicator();
+          }
         },
       ),
     );
