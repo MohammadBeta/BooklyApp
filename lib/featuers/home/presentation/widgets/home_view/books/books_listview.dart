@@ -1,4 +1,4 @@
-import 'package:bookly_application/featuers/home/presentation/widgets/home_view/books/book_listview_item.dart';
+import 'package:bookly_application/featuers/home/presentation/widgets/custom_book_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../data/models/book_model/book_model.dart';
@@ -11,12 +11,14 @@ class BooksListView extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * .27,
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: booksList!.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: CustomBookItem(bookModel: booksList![index]),
+            child: CustomBookItem(
+                imageUrl: booksList![index].volumeInfo!.imageLinks!.thumbnail!),
           );
         },
       ),

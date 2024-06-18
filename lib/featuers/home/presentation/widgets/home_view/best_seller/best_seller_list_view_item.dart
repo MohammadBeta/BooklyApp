@@ -3,6 +3,7 @@ import 'package:bookly_application/featuers/home/presentation/widgets/home_view/
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/utilis/constants/styles.dart';
+import '../../custom_book_item.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
   const BestSellerListViewItem({super.key, required this.bookModel});
@@ -14,17 +15,8 @@ class BestSellerListViewItem extends StatelessWidget {
       children: [
         SizedBox(
           height: 130,
-          child: AspectRatio(
-            aspectRatio: 2.5 / 4,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                          bookModel.volumeInfo!.imageLinks!.thumbnail!))),
-            ),
+          child: CustomBookItem(
+            imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
           ),
         ),
         const SizedBox(
@@ -55,8 +47,9 @@ class BestSellerListViewItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    bookModel.saleInfo!.retailPrice != null ?
-                    "${bookModel.saleInfo!.retailPrice!.amount} ${bookModel.saleInfo!.retailPrice!.currencyCode}" : "Free",
+                    bookModel.saleInfo!.retailPrice != null
+                        ? "${bookModel.saleInfo!.retailPrice!.amount} ${bookModel.saleInfo!.retailPrice!.currencyCode}"
+                        : "Free",
                     style: AppStyles.styleBold15,
                   ),
                   const Padding(
