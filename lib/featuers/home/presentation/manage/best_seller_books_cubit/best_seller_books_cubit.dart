@@ -6,12 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'best_seller_books_state.dart';
 
 class BestSellerCubit extends Cubit<BestSellerState> {
-  BestSellerCubit() : super(BestSellerInitial());
-  final HomeRepoImpl _homeRepoImpl = HomeRepoImpl(apiService: ApiService());
+  BestSellerCubit({required this.homeRepoImpl}) : super(BestSellerInitial());
+  final HomeRepoImpl homeRepoImpl;
   void getBestSellerBooks() async {
     emit(BestSellerLoading());
 
-    final result = await _homeRepoImpl.fetchBestSellerBooks();
+    final result = await homeRepoImpl.fetchBestSellerBooks();
 
     result.fold(
         (failure) => emit(BestSellerFailure(errorMessage: failure.message)),

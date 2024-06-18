@@ -6,12 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'featured_books_state.dart';
 
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
-  FeaturedBooksCubit() : super(FeaturedBooksInitial());
-  final HomeRepoImpl _homeRepoImpl = HomeRepoImpl(apiService: ApiService());
+  FeaturedBooksCubit({required this.homeRepoImpl}) : super(FeaturedBooksInitial());
+  final HomeRepoImpl homeRepoImpl;
   void getFeaturedBooks() async {
     emit(FeaturedBooksLoading());
 
-    final result = await _homeRepoImpl.fetchFeaturedBooks();
+    final result = await homeRepoImpl.fetchFeaturedBooks();
 
     result.fold(
         (failure) => emit(FeaturedBooksFailure(errorMessage: failure.message)),
