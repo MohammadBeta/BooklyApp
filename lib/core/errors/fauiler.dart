@@ -27,6 +27,9 @@ class ServerFailure extends Failure {
             message: _handleError(
                 dioError.response?.statusCode, dioError.response?.data));
       case DioExceptionType.unknown:
+        if (dioError.message!.contains('SOCKETEXCEPTION')) {
+          return const ServerFailure(message: "No Internet Connection.");
+        }
         return const ServerFailure(
             message: "Unexpected error occurred. Please try again.");
       default:

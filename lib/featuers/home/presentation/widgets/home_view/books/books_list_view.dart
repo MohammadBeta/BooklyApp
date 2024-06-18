@@ -1,10 +1,10 @@
 import 'package:bookly_application/core/widgets/custom_error.dart';
-import 'package:bookly_application/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly_application/featuers/home/presentation/widgets/custom_book_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../manage/featured_books_cubit/featured_books_cubit.dart';
+import 'books_list_view_shimmer.dart';
 
 class BooksListView extends StatelessWidget {
   const BooksListView({super.key});
@@ -38,7 +38,7 @@ class BooksListView extends StatelessWidget {
           } else if (state is FeaturedBooksFailure) {
             return const CustomErrorWidget();
           } else {
-            return const CustomLoadingIndicator();
+            return const BooksListViewShimmer();
           }
         },
       ),
