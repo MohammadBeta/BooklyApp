@@ -1,3 +1,4 @@
+import 'package:bookly_application/featuers/search/presentaion/widgets/serach_results_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,7 +20,7 @@ class SearchResultListView extends StatelessWidget {
               onTap: () {
                 GoRouter.of(context).push(AppRoutes.bookDetailsView);
               },
-              child: const BestSellerListViewItem()),
+              child:  SearchResultListViewItem()),
         );
       },
     );

@@ -14,7 +14,7 @@ class BookDetailSection extends StatelessWidget {
         Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.sizeOf(context).width * .30),
-            child:  CustomBookItem()),
+            child:  CustomBookItem(bookModel: null,)),
         const SizedBox(
           height: 25,
         ),

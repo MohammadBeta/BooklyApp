@@ -68,7 +68,9 @@ class HomeViewBody extends StatelessWidget {
             },
             builder: (context, state) {
               if (state is BestSellerSuccess) {
-                return const BestSellerListView();
+                return BestSellerListView(
+                  booksList: state.booksList,
+                );
               } else if (state is BestSellerLoading) {
                 return const Center(
                   child: CircularProgressIndicator(),

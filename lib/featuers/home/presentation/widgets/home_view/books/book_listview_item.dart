@@ -2,18 +2,19 @@ import 'package:bookly_application/featuers/home/data/models/book_model/book_mod
 import 'package:flutter/material.dart';
 
 class CustomBookItem extends StatelessWidget {
-  CustomBookItem({super.key, this.bookModel});
-  BookModel? bookModel;
+  const CustomBookItem({super.key, required this.bookModel});
+  final BookModel? bookModel;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 2.6 / 4,
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.red, borderRadius: BorderRadius.circular(16)),
-        child: bookModel == null
-            ? const SizedBox()
-            : Text(bookModel!.volumeInfo!.title!),
+            borderRadius: BorderRadius.circular(16),
+            image: DecorationImage(
+                fit: BoxFit.fill,
+                image: NetworkImage(
+                    bookModel!.volumeInfo!.imageLinks!.thumbnail!))),
       ),
     );
   }

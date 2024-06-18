@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/utilis/constants/styles.dart';
 
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key, required this.bookModel});
-  final BookModel bookModel;
+class SearchResultListViewItem extends StatelessWidget {
+   SearchResultListViewItem({super.key,  this.bookModel});
+ BookModel? bookModel;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,12 +18,11 @@ class BestSellerListViewItem extends StatelessWidget {
             aspectRatio: 2.5 / 4,
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                          bookModel.volumeInfo!.imageLinks!.thumbnail!))),
+                  color: Colors.red, borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(
+                fit: BoxFit.fill,
+                image: NetworkImage(
+                    'bookModel.volumeInfo!.imageLinks!.thumbnail!'))),
             ),
           ),
         ),
@@ -35,8 +34,8 @@ class BestSellerListViewItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                bookModel.volumeInfo!.title!,
+              const Text(
+                "Harry Potter and the Goblet of Fire",
                 maxLines: 2,
                 style: AppStyles.styleRegular20,
                 overflow: TextOverflow.ellipsis,
@@ -45,21 +44,20 @@ class BestSellerListViewItem extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                bookModel.volumeInfo!.authors![0],
+                "J.K. Rowling",
                 style: AppStyles.styleMedium14.copyWith(color: Colors.grey),
               ),
               const SizedBox(
                 height: 5,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    bookModel.saleInfo!.retailPrice != null ?
-                    "${bookModel.saleInfo!.retailPrice!.amount} ${bookModel.saleInfo!.retailPrice!.currencyCode}" : "Free",
+                    "19.99 €",
                     style: AppStyles.styleBold15,
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(right: 30),
                     child: BookRating(),
                   )
