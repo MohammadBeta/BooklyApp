@@ -16,7 +16,7 @@ class BestSellerListViewItem extends StatelessWidget {
         SizedBox(
           height: 130,
           child: CustomBookItem(
-            imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+            imageUrl: bookModel.volumeInfo.imageLinks.thumbnail,
           ),
         ),
         const SizedBox(
@@ -28,7 +28,7 @@ class BestSellerListViewItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                bookModel.volumeInfo!.title!,
+                bookModel.volumeInfo.title!,
                 maxLines: 2,
                 style: AppStyles.styleRegular20,
                 overflow: TextOverflow.ellipsis,
@@ -37,7 +37,7 @@ class BestSellerListViewItem extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                bookModel.volumeInfo!.authors![0],
+                bookModel.volumeInfo.authors![0],
                 style: AppStyles.styleMedium14.copyWith(color: Colors.grey),
               ),
               const SizedBox(

@@ -1,8 +1,8 @@
 class ImageLinks {
 	String? smallThumbnail;
-	String? thumbnail;
+	String thumbnail;
 
-	ImageLinks({this.smallThumbnail, this.thumbnail});
+	ImageLinks({this.smallThumbnail,required this.thumbnail});
 
 	@override
 	String toString() {
@@ -11,7 +11,7 @@ class ImageLinks {
 
 	factory ImageLinks.fromJson(Map<String, dynamic> json) => ImageLinks(
 				smallThumbnail: json['smallThumbnail'] as String?,
-				thumbnail: json['thumbnail'] as String?,
+				thumbnail: json['thumbnail'] as String,
 			);
 
 	Map<String, dynamic> toJson() => {

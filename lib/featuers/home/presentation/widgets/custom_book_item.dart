@@ -1,3 +1,4 @@
+import 'package:bookly_application/core/widgets/custom_error.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,13 @@ class CustomBookItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: AspectRatio(
         aspectRatio: 2.6 / 4,
-        child: CachedNetworkImage(fit: BoxFit.fill, imageUrl: imageUrl),
+        child: CachedNetworkImage(
+          fit: BoxFit.fill,
+          imageUrl: imageUrl,
+          errorWidget: (context, url, error) {
+            return const CustomErrorWidget();
+          },
+        ),
       ),
     );
   }
