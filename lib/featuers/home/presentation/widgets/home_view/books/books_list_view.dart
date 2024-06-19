@@ -31,12 +31,12 @@ class BooksListView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: CustomBookItem(
                       imageUrl: state
-                          .booksList[index].volumeInfo.imageLinks.thumbnail),
+                          .booksList[index].volumeInfo.imageLinks?.thumbnail),
                 );
               },
             );
           } else if (state is FeaturedBooksFailure) {
-            return const CustomErrorWidget();
+            return  CustomErrorWidget(errorText: state.errorMessage,);
           } else {
             return const BooksListViewShimmer();
           }

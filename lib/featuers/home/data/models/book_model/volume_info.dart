@@ -11,7 +11,7 @@ class VolumeInfo {
   String? maturityRating;
   bool? allowAnonLogging;
   String? contentVersion;
-  ImageLinks imageLinks;
+  ImageLinks? imageLinks;
   String? language;
   String? previewLink;
   String? infoLink;
@@ -54,7 +54,7 @@ class VolumeInfo {
         maturityRating: json['maturityRating'] as String?,
         allowAnonLogging: json['allowAnonLogging'] as bool?,
         contentVersion: json['contentVersion'] as String?,
-        imageLinks:
+        imageLinks: json['imageLinks'] == null ? null:
             ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>),
         language: json['language'] as String?,
         previewLink: json['previewLink'] as String?,
@@ -73,7 +73,7 @@ class VolumeInfo {
         'maturityRating': maturityRating,
         'allowAnonLogging': allowAnonLogging,
         'contentVersion': contentVersion,
-        'imageLinks': imageLinks.toJson(),
+        'imageLinks':  imageLinks?.toJson(),
         'language': language,
         'previewLink': previewLink,
         'infoLink': infoLink,

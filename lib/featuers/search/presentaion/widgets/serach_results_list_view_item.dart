@@ -1,12 +1,13 @@
 import 'package:bookly_application/featuers/home/data/models/book_model/book_model.dart';
+import 'package:bookly_application/featuers/home/presentation/widgets/custom_book_item.dart';
 import 'package:bookly_application/featuers/home/presentation/widgets/home_view/best_seller/book_rating.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/utilis/constants/styles.dart';
 
 class SearchResultListViewItem extends StatelessWidget {
-  SearchResultListViewItem({super.key, this.bookModel});
-  BookModel? bookModel;
+  const SearchResultListViewItem({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,17 +15,8 @@ class SearchResultListViewItem extends StatelessWidget {
       children: [
         SizedBox(
           height: 130,
-          child: AspectRatio(
-            aspectRatio: 2.5 / 4,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(8),
-                  image: const DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                          'bookModel.volumeInfo!.imageLinks!.thumbnail!'))),
-            ),
+          child: CustomBookItem(
+            imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail,
           ),
         ),
         const SizedBox(
@@ -35,8 +27,8 @@ class SearchResultListViewItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Harry Potter and the Goblet of Fire",
+              Text(
+                bookModel.volumeInfo.title!,
                 maxLines: 2,
                 style: AppStyles.styleRegular20,
                 overflow: TextOverflow.ellipsis,
@@ -45,7 +37,9 @@ class SearchResultListViewItem extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                "J.K. Rowling",
+                bookModel.volumeInfo.authors == null
+                    ? ''
+                    : bookModel.volumeInfo.authors![0]!,
                 style: AppStyles.styleMedium14.copyWith(color: Colors.grey),
               ),
               const SizedBox(
@@ -55,7 +49,7 @@ class SearchResultListViewItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "19.99 €",
+                    "Free",
                     style: AppStyles.styleBold15,
                   ),
                   Padding(

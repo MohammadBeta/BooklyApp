@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomBookItem extends StatelessWidget {
   const CustomBookItem({super.key, required this.imageUrl});
-  final String imageUrl;
+  final String? imageUrl;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -13,9 +13,9 @@ class CustomBookItem extends StatelessWidget {
         aspectRatio: 2.6 / 4,
         child: CachedNetworkImage(
           fit: BoxFit.fill,
-          imageUrl: imageUrl,
+          imageUrl: imageUrl == null ? '' : imageUrl!,
           errorWidget: (context, url, error) {
-            return const CustomErrorWidget();
+            return const CustomErrorWidget(errorText: null,);
           },
         ),
       ),

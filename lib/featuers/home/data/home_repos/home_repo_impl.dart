@@ -53,9 +53,15 @@ class HomeRepoImpl implements HomeRepo {
       Map<String, dynamic> data =
           await apiService.getData(AppApiUrl.fetchSimilarBooks + category);
       List<BookModel> booksList = [];
-
+      if (!data.keys.contains('items')) {
+        return right([]);
+      }
       for (int i = 0; i < data['items'].length; i++) {
+        try{
         booksList.add(BookModel.fromJson(data['items'][i]));
+        }catch(ex){
+                  booksList.add(BookModel.fromJson(data['items'][i]));
+        }
       }
       return right(booksList);
     } catch (ex) {

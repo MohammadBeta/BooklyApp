@@ -6,12 +6,14 @@ import 'custom_serach_button.dart';
 class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField({
     super.key,
-    this.onPressed,
+    this.onPressed, required this.searchCtrl,
   });
   final void Function()? onPressed;
+  final TextEditingController searchCtrl;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: searchCtrl,
         decoration: InputDecoration(
             hintText: "Search",
             hintStyle: AppStyles.styleMedium16,

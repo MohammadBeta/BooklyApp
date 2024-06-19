@@ -16,7 +16,7 @@ class BookDetailSection extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.sizeOf(context).width * .30),
             child: CustomBookItem(
-              imageUrl: bookModel.volumeInfo.imageLinks.thumbnail,
+              imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail,
             )),
         const SizedBox(
           height: 25,
@@ -32,7 +32,9 @@ class BookDetailSection extends StatelessWidget {
         Opacity(
           opacity: .7,
           child: Text(
-            bookModel.volumeInfo.authors![0]!,
+            bookModel.volumeInfo.authors == null
+                ? ''
+                : bookModel.volumeInfo.authors![0]!,
             style: AppStyles.styleMedium18,
           ),
         ),

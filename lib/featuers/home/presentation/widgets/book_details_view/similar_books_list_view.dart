@@ -29,18 +29,22 @@ class SimilarBooksListView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: GestureDetector(
                     onTap: () {
-                      GoRouter.of(context).pushReplacement(AppRoutes.bookDetailsView, extra: state.booksList[index]);
+                      GoRouter.of(context).pushReplacement(
+                          AppRoutes.bookDetailsView,
+                          extra: state.booksList[index]);
                     },
                     child: CustomBookItem(
                       imageUrl: state
-                          .booksList[index].volumeInfo.imageLinks.thumbnail,
+                          .booksList[index].volumeInfo.imageLinks?.thumbnail,
                     ),
                   ),
                 );
               },
             );
           } else if (state is SimilarBooksFailure) {
-            return const CustomErrorWidget();
+            return CustomErrorWidget(
+              errorText: state.errorMessage,
+            );
           } else {
             return const CustomLoadingIndicator();
           }

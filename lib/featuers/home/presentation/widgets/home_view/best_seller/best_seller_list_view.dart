@@ -36,7 +36,7 @@ class BestSellerListView extends StatelessWidget {
               );
             });
       } else if (state is BestSellerFailure) {
-        return const SliverToBoxAdapter(child: CustomErrorWidget());
+        return  SliverToBoxAdapter(child: CustomErrorWidget(errorText: state.errorMessage,));
       } else {
         return const SliverToBoxAdapter(child: CustomLoadingIndicator());
       }
