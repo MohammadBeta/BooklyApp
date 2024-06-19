@@ -24,11 +24,12 @@ class BookDetailSection extends StatelessWidget {
         Text(
           bookModel.volumeInfo.title!,
           style: AppStyles.styleRegular30.copyWith(fontWeight: FontWeight.w600),
+          textAlign: TextAlign.center,
         ),
         const SizedBox(
           height: 2,
         ),
-         Opacity(
+        Opacity(
           opacity: .7,
           child: Text(
             bookModel.volumeInfo.authors![0]!,
@@ -44,7 +45,10 @@ class BookDetailSection extends StatelessWidget {
         ),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 30),
-          child: BookDetailsButtons(price: "Free", previewLink: "",),
+          child: BookDetailsButtons(
+            price: "Free",
+            previewLink: "",
+          ),
         ),
       ],
     );

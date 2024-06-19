@@ -6,4 +6,6 @@ abstract class AppApiUrl {
 
   static const fetchFeaturedBooks =
       '${_server}volumes?Filtering=free-ebooks&q=Programming';
+  static const fetchSimilarBooks =
+      '${_server}volumes?Filtering=free-ebooks&Sorting=relevance&q=subject:';
 }

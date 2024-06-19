@@ -16,6 +16,7 @@ class VolumeInfo {
   String? previewLink;
   String? infoLink;
   String? canonicalVolumeLink;
+  List<String> categories;
 
   VolumeInfo({
     this.title,
@@ -29,6 +30,7 @@ class VolumeInfo {
     this.allowAnonLogging,
     this.contentVersion,
     required this.imageLinks,
+    required this.categories,
     this.language,
     this.previewLink,
     this.infoLink,
@@ -43,6 +45,7 @@ class VolumeInfo {
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
         title: json['title'] as String?,
         authors: json['authors'] as List<dynamic>?,
+        categories: json['categories']  == null ? [] :(json['categories'] as List<dynamic>).cast(),
         publisher: json['publisher'] as String?,
         publishedDate: json['publishedDate'] as String?,
         description: json['description'] as String?,
@@ -75,5 +78,6 @@ class VolumeInfo {
         'previewLink': previewLink,
         'infoLink': infoLink,
         'canonicalVolumeLink': canonicalVolumeLink,
+        'categories': categories,
       };
 }
