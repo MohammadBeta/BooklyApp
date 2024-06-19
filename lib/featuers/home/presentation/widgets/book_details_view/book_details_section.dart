@@ -43,11 +43,11 @@ class BookDetailSection extends StatelessWidget {
         const SizedBox(
           height: 35,
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: BookDetailsButtons(
             price: "Free",
-            previewLink: "",
+            previewLink: bookModel.saleInfo!.buyLink,
           ),
         ),
       ],

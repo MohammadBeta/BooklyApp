@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/utilis/constants/app_routes.dart';
-import '../../../home/presentation/widgets/home_view/best_seller/best_seller_list_view_item.dart';
 
 class SearchResultListView extends StatelessWidget {
   const SearchResultListView({super.key});
@@ -20,7 +19,7 @@ class SearchResultListView extends StatelessWidget {
               onTap: () {
                 GoRouter.of(context).push(AppRoutes.bookDetailsView);
               },
-              child:  SearchResultListViewItem()),
+              child: SearchResultListViewItem()),
         );
       },
     );
