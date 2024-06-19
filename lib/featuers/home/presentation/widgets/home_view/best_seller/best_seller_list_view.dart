@@ -28,7 +28,7 @@ class BestSellerListView extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 16),
                 child: InkWell(
                     onTap: () {
-                      GoRouter.of(context).push(AppRoutes.bookDetailsView);
+                      GoRouter.of(context).push(AppRoutes.bookDetailsView, extra: state.booksList[index]);
                     },
                     child: BestSellerListViewItem(
                       bookModel: state.booksList[index],
